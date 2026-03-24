@@ -1,0 +1,74 @@
+import Joi from "joi";
+import { generalFields } from "../../middleware/validation.js";
+
+export const shareProfile = {
+  params: Joi.object().keys({
+    userId: generalFields.userId.required(),
+  }),
+};
+
+export const updateBasicInfo = {
+  body: Joi
+    .object()
+    .keys({
+      firstName: generalFields.firstName,
+      lastName: generalFields.lastName,
+      phone: generalFields.phone,
+      gender: generalFields.gender,
+    })
+    .required(),
+};
+
+export const frezzAccount = {
+  params: Joi.object().keys({
+    userId: generalFields.userId,
+  }),
+};
+
+export const restoreAccount = {
+  params: Joi.object().keys({
+    userId: generalFields.userId.required(),
+  }),
+};
+
+export const deleteAccount = {
+  params: Joi.object().keys({
+    userId: generalFields.userId.required(),
+  }),
+};
+
+export const updatePassword = {
+  body: Joi.object().keys({
+    oldPassword: generalFields.password.required(),
+    newPassword: generalFields.password.not(Joi.ref("oldPassword")).required(),
+    confirmNewPassword: Joi.string().valid(Joi.ref("newPassword")).required(),
+    flag: generalFields.flag,
+  }),
+};
+
+export const logout = {
+  body: Joi.object().keys({
+    flag: generalFields.flag,
+  }),
+};
+
+export const updateProfileImage = {
+  file: Joi
+    .object()
+    .keys({
+      fieldname: generalFields.fieldname,
+      originalname: generalFields.originalname,
+      encoding: generalFields.encoding,
+      destination: generalFields.destination,
+      finalPath: generalFields.finalPath,
+      path: generalFields.path,
+      size: generalFields.size,
+
+      mimetype: generalFields.mimetype,
+    })
+    .required(),
+};
+
+// export const updateCoverImage = {
+//   files: joi.array().items(generalFields.file).min(1).max(3).required(),
+// };
