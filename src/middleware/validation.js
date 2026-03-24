@@ -35,15 +35,17 @@ export const generalFields = {
     return value;
   }),
 
-  fieldname: Joi.string().required(),
-  originalname: Joi.string().required(),
-  encoding: Joi.string().required(),
-  destination: Joi.string().required(),
-  filename: Joi.string().required(),
-  finalPath: Joi.string().required(),
-  path: Joi.string().required(),
-  size: Joi.number().positive().required(),
-  mimetype: Joi.string().valid(...Object.values(fileValidation.image)),
+  file: Joi.object().keys({
+    fieldname: Joi.string().required(),
+    originalname: Joi.string().required(),
+    encoding: Joi.string().required(),
+    destination: Joi.string().required(),
+    filename: Joi.string().required(),
+    finalPath: Joi.string().required(),
+    path: Joi.string().required(),
+    size: Joi.number().positive().required(),
+    mimetype: Joi.string().valid(...Object.values(fileValidation.image)),
+  }),
 };
 
 export const validation = (schema) => {

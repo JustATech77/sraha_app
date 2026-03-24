@@ -8,8 +8,7 @@ export const shareProfile = {
 };
 
 export const updateBasicInfo = {
-  body: Joi
-    .object()
+  body: Joi.object()
     .keys({
       firstName: generalFields.firstName,
       lastName: generalFields.lastName,
@@ -53,20 +52,7 @@ export const logout = {
 };
 
 export const updateProfileImage = {
-  file: Joi
-    .object()
-    .keys({
-      fieldname: generalFields.fieldname,
-      originalname: generalFields.originalname,
-      encoding: generalFields.encoding,
-      destination: generalFields.destination,
-      finalPath: generalFields.finalPath,
-      path: generalFields.path,
-      size: generalFields.size,
-
-      mimetype: generalFields.mimetype,
-    })
-    .required(),
+  file: generalFields.file,
 };
 
 // export const updateCoverImage = {
